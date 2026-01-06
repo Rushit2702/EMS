@@ -1,0 +1,509 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* Fixed layout structure */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 16px 24px;
+  margin-left: 220px;
+  max-width: calc(100vw - 220px);
+  overflow-x: auto;
+  position: relative;
+  width: calc(100vw - 220px);
+}
+
+/* Cards with stable dimensions - made wider */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 24px;
+  margin: 16px 0;
+  transition: all 0.3s ease;
+  min-height: 400px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+/* Modal with fixed positioning - covers entire page except sidebar */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 220px; /* Start after sidebar */
+  width: calc(100vw - 220px); /* Full width minus sidebar */
+  height: 100vh;
+  background: transparent; /* No overlay background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.3s ease-out;
+  min-width: 500px;
+  width: auto;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Typography */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+/* Form elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.2s;
+  width: 100%;
+  min-height: 36px;
+}
+
+input:focus,
+select:focus {
+  border: 1.5px solid #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Buttons */
+button {
+  padding: 8px 0;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 36px;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Action buttons with gradients */
+.action-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-height: 36px;
+  min-width: 80px;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  color: #333;
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 154, 158, 0.3);
+}
+
+.animated-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  min-height: 40px;
+}
+
+.animated-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Alerts */
+.error {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.success {
+  color: #388e3c;
+  background: #e8f5e9;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-size: 0.85rem;
+}
+
+.alert-error {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-size: 0.85rem;
+}
+
+/* Login and Register containers */
+.login-container,
+.register-container {
+  background: #fff;
+  max-width: 350px;
+  width: 90%;
+  margin: 40px auto;
+  padding: 24px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+/* Table container */
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Action buttons container */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Search and filter containers */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+/* Empty state styling */
+.empty-state {
+  text-align: center;
+  color: #888;
+  margin: 32px 0;
+  padding: 40px;
+}
+
+/* Loading spinner */
+.spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #eee;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design - simplified and stable */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    max-width: calc(100vw - 200px);
+    margin-left: 200px;
+    width: calc(100vw - 200px);
+    padding: 16px 20px;
+  }
+  
+  .modal {
+    left: 200px;
+    width: calc(100vw - 200px);
+  }
+  
+  .card {
+    margin: 12px 0;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  table {
+    font-size: 0.85rem;
+  }
+  
+  th, td {
+    padding: 8px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+  
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  
+  .dashboard-content {
+    max-width: 100vw;
+    margin-left: 0;
+    padding: 8px 12px;
+    width: 100vw;
+  }
+  
+  .modal {
+    left: 0;
+    width: 100vw;
+  }
+  
+  .card {
+    margin: 8px 0;
+    padding: 16px;
+    min-height: 300px;
+    width: 100%;
+  }
+  
+  .modal-content {
+    min-width: 300px;
+    max-width: 95%;
+    padding: 20px;
+  }
+  
+  .action-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .action-buttons {
+    gap: 6px;
+  }
+  
+  .login-container,
+  .register-container {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px 16px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+  
+  .dashboard-content {
+    padding: 4px 8px;
+  }
+  
+  .card {
+    margin: 4px 0;
+    padding: 12px;
+    min-height: 250px;
+    width: 100%;
+  }
+  
+  .modal-content {
+    min-width: 280px;
+    padding: 16px;
+  }
+  
+  input, select {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    min-height: 32px;
+  }
+  
+  button {
+    padding: 6px 0;
+    font-size: 0.85rem;
+    min-height: 32px;
+  }
+  
+  .action-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    min-width: 60px;
+    min-height: 28px;
+  }
+  
+  .action-buttons {
+    gap: 4px;
+  }
+  
+  .login-container,
+  .register-container {
+    max-width: 280px;
+    margin: 10px auto;
+    padding: 16px 12px;
+  }
+}
+
+/* Ensure no horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Fixed sidebar positioning */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  z-index: 100;
+  overflow-y: auto;
+}
